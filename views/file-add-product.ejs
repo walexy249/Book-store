@@ -1,0 +1,107 @@
+<%- include('./layout/head.ejs') %> <% if(errorMessage) { %>
+<div class="row content ">
+  <div class="col-sm-12 ">
+    <div class="col-sm-4 col-sm-offset-4 error-box">
+      <p class="h5 text-center"><%= errorMessage %></p>
+    </div>
+  </div>
+</div>
+<% } %>
+<div class="<%= errorMessage ? '' : 'add-product-container' %> container">
+  <div class="row">
+    <form
+      class="form-horizontal"
+      action="/admin/add-product"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Name</label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            id="pwd"
+            value="<% if (errorMessage) { %> <%= book.name %> <% } %>"
+            placeholder="Name of book"
+            name="name"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Author:</label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            id="pwd"
+            placeholder="Author"
+            value="<% if (errorMessage) { %> <%= book.author %> <% } %>"
+            name="author"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Price:</label>
+        <div class="col-sm-6">
+          <input
+            type="text"
+            class="form-control"
+            id="pwd"
+            placeholder="Price"
+            value="<% if (errorMessage) { %> <%= book.price %> <% } %>"
+            name="price"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="categories"
+          >Categories</label
+        >
+        <div class="col-sm-6">
+          <select class=" form-control" name="category" id="categories">
+            <option value="romance" <% if (errorMessage) { %>
+              <%= book.category == 'romance' ? 'selected' : '' %> <% }
+              %>>Romance</option
+            >
+            <option value="business" <% if (errorMessage) { %>
+              <%= book.category == 'business' ? 'selected' : '' %> <% }
+              %>>Business</option
+            >
+            <option value="scienceFiction" <% if (errorMessage) { %>
+              <%= book.category == 'scienceFiction' ? 'selected' : '' %> <% }
+              %>>Science Fiction</option
+            >
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Image:</label>
+        <div class="col-sm-6">
+          <input
+            type="file"
+            class="form-control"
+            id="pwd"
+            placeholder="Price"
+            name="image"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-sm-3" for="pwd">Description:</label>
+        <div class="col-sm-6">
+          <textarea name="description" id="" cols="75" rows="5">
+  <% if (errorMessage) { %> <%= book.description %> <% } %></textarea
+          >
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-10">
+          <button type="submit" class="btn btn-green">Add product</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('./layout/end.ejs') %>

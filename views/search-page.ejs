@@ -1,0 +1,49 @@
+<%- include('./layout/head.ejs') %>
+<div class="product-details container">
+  <div class="row">
+    <% if (book.length < 1 ) { %>
+    <div><h2 class="text-center">No result found</h2></div>
+    <% } else { %>
+          <h4 class="text-center">Search Results....</h4>
+          <% if (book.length <= 1 ) { %>
+          <div class="col-sm-12 des">
+            <div class="col-sm-3 col-sm-offset-2">
+              <img src="/images/book/<%= book[0].image %>" class="img-responsive" alt="" />
+            </div>
+            <div class="col-sm-5 about-book">
+              <p class="h2 text-capitalize"><%= book[0].name %></p>
+              <p class="author-name text-capitalize">by <%= book[0].author %></p>
+              <p class="h3">&#8358 <%= book[0].price %></p>
+              <p class="book-description">
+                <%= book[0].description %>
+              </p>
+              <form action="/addToCart" method="POST">
+                <button id="btnLink" class="btn btn-green searchresultbtn" >Add to Cart</button>
+                <input type="hidden" name="productId" value="<%= book[0].id %>">
+              </form>
+            </div>
+          
+          </div>
+          <% } else { %>
+          <% for (books of book) { %>
+            <div class="cards col-sm-3">
+              <img class="img-responsive" src="images/book/<%= books.image %>" alt="" />
+              <div class="book-detail">
+                <p class="h4"><%= books.name %></p>
+                <p class="h5"><%= books.author %></p>
+                <p class="price h5">&#8358 <%= books.price %></p>
+              </div>
+              <div class="btn-group"> 
+                <a class="btn btn-green btn-link"  href="/book/<%= books.id %>">Details</a>
+                <form action="/addToCart" method="POST">
+                  <button id="btnLink" class="btn btn-green searchresultbtn" >Add to Cart</button>
+                  <input type="hidden" name="productId" value="<%= books.id %>">
+                </form>
+              </div>
+            </div>
+            <% } %>
+            <% } %>
+            <% } %>
+  </div>
+</div>
+<%- include('./layout/end.ejs') %>

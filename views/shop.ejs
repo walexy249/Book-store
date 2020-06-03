@@ -1,0 +1,82 @@
+<%- include('./layout/head.ejs') %>
+    <div class="jumbotron text-center">
+      <h1>Dash Store</h1>
+      <p>Welcome to your friendly neighborhood library. We have more than 50,000 books waiting to be discovered.</p>
+      <form class="form-inline" action="/search" method="POST">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            size="50"
+            placeholder="Search by name, author..."
+            name="search"
+            required
+          />
+          <div class="input-group-btn">
+            <button class="btn search-button" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="category text-center">
+            <h2>Best Selling</h2>
+          </div>
+          <% for (books of book) { %>
+          <div class="cards col-sm-3">
+            <img class="img-responsive" src="images/book/<%= books.image %>" alt="" />
+            <div class="book-detail">
+              <p class="h4"><%= books.name %></p>
+              <p class="h5"><%= books.author %></p>
+              <p class="price h5">&#8358 <%= books.price %></p>
+            </div>
+            <div class="btn-group"> 
+              <a class="btn btn-green btn-link"  href="/book/<%= books.id %>">Details</a>
+              <form action="/addToCart" method="POST">
+                <button id="btnLink btn-link" class="btn btn-green" >Add to Cart</button>
+                <input type="hidden" name="productId" value="<%= books.id %>">
+              </form>
+            </div>
+          </div>
+          <% } %>
+    </section>
+
+    <section id="category-section">
+      <div class="container">
+        <div class="row">
+          <div class="category text-center">
+            <h2>Categories</h2>
+          </div>
+          <div class="cards col-sm-3">
+            <a href="/category/romance"><img class="img-responsive" src="images/theunravelling.jpg" alt="" /><span class="h3 text-center">Romance</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href="/category/business"><img class="img-responsive" src="images/ignite cover.jpg" alt="" /><span class="h3 text-center">Business</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href="/category/scienceFiction"><img class="img-responsive" src="images/lamp.jpg" alt="" /><span class="h3 text-center">Science</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href="/category/politics"><img class="img-responsive" src="images/theartofwar.jpg" alt="" /><span class="h3 text-center">Politics</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href=""><img class="img-responsive" src="images/love in a small town.jpg" alt="" /><span class="h3 text-center">Fantasy</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href=""><img class="img-responsive" src="images/werewolvesOfNewyork.jpg" alt="" /><span class="h3 text-center">Sport</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href=""><img class="img-responsive" src="images/ultimate.jpg" alt="" /><span class="h3 text-center">Adult</span></a> 
+          </div>
+          <div class="cards col-sm-3">
+            <a href=""><img class="img-responsive" src="images/troubletriange.jpg" alt="" /><span class="h3 text-center">Horror</span></a> 
+          </div>
+          
+            
+    </section>
+
+    
+    
+   <%- include('./layout/end.ejs') %>

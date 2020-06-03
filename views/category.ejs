@@ -1,0 +1,34 @@
+<%- include('./layout/head.ejs') %>
+    
+    <section id="best-selling" class="content">
+        <div class="container">
+          <div class="row">
+            
+            <div class="category">
+              <h2 class="text-center text-capitalize" ><%= pageTitle %></h2>
+            </div>
+            <% if ( book.length > 0 ) { %>
+              <% for (let books of book) { %>
+            <div class="cards col-sm-3">
+              <img class="img-responsive" src="/images/book/<%= books.image %>" alt="" />
+              <div class="book-detail">
+                <p class="h4"><%= books.name %></p>
+                <p class="h5"><%= books.author %></p>
+                <p class="price h5">&#8358 <%= books.price %></p>
+              </div>
+              <div class="btn-group"> 
+                <a class="btn btn-green btn-link"  href="/book/<%= books.id %>">Details</a>
+                <form action="/addToCart" method="POST">
+                  <button id="btnLink btn-link" class="btn btn-green" >Add to Cart</button>
+                  <input type="hidden" name="productId" value="<%= books.id %>">
+                </form>
+              </div>
+            </div>
+            <% } %>
+            <% } else { %>
+             <div class=""><p class="h3">No product found in these category</p></div>
+             <% } %>
+              
+      </section>
+      
+<%- include('./layout/end.ejs') %>

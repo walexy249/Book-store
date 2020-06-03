@@ -1,0 +1,25 @@
+<%- include('./layout/head.ejs') %>
+    <div class="product-details container">
+      <div class="row">
+        <h2 class="text-center ">Book Description</h2>
+        <div class="col-sm-12 des">
+          <div class="col-sm-3 col-sm-offset-2">
+            <img src="/images/book/<%= book.image %>" class="img-responsive" alt="" />
+          </div>
+          <div class="col-sm-5 about-book">
+            <p class="h2 text-capitalize"><%= book.name %></p>
+            <p class="author-name text-capitalize">by <%= book.author %></p>
+            <p class="h3">&#8358 <%= book.price %></p>
+            <p class="book-description">
+              <%= book.description %>
+            </p>
+            <form action="/addToCart" method="POST">
+              <button id="btnLink btn-link" class="btn btn-green" >Add to Cart</button>
+              <input type="hidden" name="productId" value="<%= book.id %>">
+            </form>
+          </div>
+          <div></div>
+        </div>
+      </div>
+    </div>
+    <%- include('./layout/end.ejs') %>

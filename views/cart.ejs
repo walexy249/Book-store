@@ -1,0 +1,73 @@
+<%- include('./layout/head.ejs') %> <% if (cart.length > 0 ) { %>
+<div class="cart-container container">
+  <h1>Cart(<%= cart.length %> Items)</h1>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-xs-4"><h4>Items</h4></div>
+    <div class="col-sm-2 col-xs-2"><h4>Quantity</h4></div>
+    <div class="col-sm-2 col-xs-3"><h4>Unit Price</h4></div>
+    <div class="col-sm-2 col-xs-3"><h4>Sub total</h4></div>
+  </div>
+  <% for (let carts of cart) { %>
+  <div class="row cart-details">
+    <div class="col-xs-4 col-sm-6">
+      <div class="cart-items col-xs-3 col-sm-12">
+        <div class="col-sm-4 hidden-xs">
+          <img
+            class="img-responsive"
+            src="/images/book/<%= carts.productId.image %>"
+            alt=""
+          />
+        </div>
+        <div class="cart-items col-xs-12 col-sm-8">
+          <h4 class="text-capitalize"><%= carts.productId.name %></h4>
+          <form action="/removeFromCart" method="POST">
+            <button class="btn btn-green">Remove Item</button>
+            <input type="hidden" name="productId" value="<%= carts.productId._id %>">
+            <input type="hidden" name="productPrice" value="<%= carts.productId.price%>">
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="cart-items col-xs-2 col-sm-2">
+      <h3><%= carts.quantity %></h3>
+    </div>
+    <div class="cart-items col-xs-3 col-sm-2">
+      <h3>&#8358 <%= carts.productId.price %></h3>
+    </div>
+    <div class="cart-items col-xs-3 col-sm-2">
+      <h3>&#8358 <%= carts.productId.price * carts.quantity %></h3>
+    </div>
+  </div>
+  <% } %>
+</div>
+<div class="container">
+  <div class="row total">
+    <div class="col-xs-12 col-sm-12">
+      <h3
+        class="col-sm-2 col-sm-offset-8 col-xs-offset-8 col-xs-2 total-xs text-success"
+      >
+        Total
+      </h3>
+      <h3 class="col-sm-2 col-xs-2 total-xs text-success">&#8358 <%= totalPrice %></h3>
+    </div>
+  </div>
+</div>
+
+<div class="container checkout">
+  <div class="row ">
+    <div class="col-sm-12 col-xs-12">
+      <div class="col-sm-3 col-sm-offset-9 col-xs-4 col-xs-offset-8">
+        <a href="" class="btn btn-success btn-md">Proceed To Checkout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<% } else { %>
+<div class="content">
+  <p class="h1">No product in cart</p>
+</div>
+<% } %> <%- include('./layout/end.ejs') %>

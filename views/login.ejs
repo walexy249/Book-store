@@ -1,0 +1,51 @@
+<%- include('./layout/head.ejs') %> <% if (errorMessage) { %>
+<div class="row content ">
+  <div class="col-sm-12 ">
+    <div class="col-sm-4 col-sm-offset-4 error-box">
+      <p class="h5 text-center"><%= errorMessage %></p>
+    </div>
+  </div>
+</div>
+<% } %>
+<div class="<%= errorMessage ? '' : 'login-container' %> container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2">
+      <form class="form-horizontal login-form" action="/login" method="POST">
+        <div class="form-group login-item">
+          <label class="control-label col-sm-2" for="email">Email:</label>
+          <div class="col-sm-6">
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              placeholder="Enter email"
+              name="email"
+              required="required"
+              value="<%= errorMessage ? users.email : '' %>"
+            />
+          </div>
+        </div>
+        <div class="form-group login-item">
+          <label class="control-label col-sm-2" for="pwd">Password:</label>
+          <div class="col-sm-6">
+            <input
+              type="password"
+              class="form-control"
+              id="pwd"
+              placeholder="Enter password"
+              name="password"
+              required="required"
+              value="<%= errorMessage ? users.password : '' %>"
+            />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-6">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<%- include('./layout/end.ejs') %>

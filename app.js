@@ -61,7 +61,7 @@ app.use((req, res, next) => {
     homepage: false
   });
 });
-
+// global error handling middleware
 app.use((error, req, res, next) => {
   res.render('500', {
     pageTitle: 'Error Page',

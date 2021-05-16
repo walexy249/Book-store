@@ -42,5 +42,9 @@ router
 router
   .route('/removeFromCart')
   .post(authController.isAuthenticated, userController.removeFromCart);
+router
+  .route('/address')
+  .post(authController.isAuthenticated, userController.addAddress)
+  .get(authController.isAuthenticated, userController.getAddress);
 // router.get('/500', authController.get500);
 module.exports = router;

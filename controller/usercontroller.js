@@ -31,3 +31,14 @@ exports.removeFromCart = async (req, res, next) => {
   await req.user.removeFromCart(req.body.productId, req.body.productPrice);
   res.redirect('/cart');
 };
+
+exports.addAddress = async (req, res) => {
+  res.redirect('/');
+}
+
+exports.getAddress = async (req, res) => {
+  res.render("address", {
+    homepage: false,
+    pageTitle: 'address'
+  });
+}
